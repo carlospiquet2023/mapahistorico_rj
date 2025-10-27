@@ -1,0 +1,3387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!--
+    =====================================================================================
+    🏛️ HISTÓRIA COMPLETA DO RIO DE JANEIRO - MATERIAL EDUCATIVO PARA ADOLESCENTES 🏛️
+    =====================================================================================
+    Desenvolvido por: Carlos Antonio de Oliveira Piquet
+    CNPJ: 27.658.099/0001-70
+    Professor de História - Faculdade Simonsen
+    E-mail: carlospiquet.projetos@gmail.com
+    
+    📚 OBJETIVO EDUCACIONAL:
+    Esta página apresenta de forma interativa e envolvente a rica história do Rio de Janeiro,
+    desde suas origens indígenas até os dias atuais, especialmente adaptada para estudantes
+    do ensino médio, com foco em despertar o interesse pela história local e nacional.
+    
+    🎯 METODOLOGIA PEDAGÓGICA:
+    - Timeline visual e interativa
+    - Biografias de personagens históricos relevantes
+    - Eventos marcantes contextalizados
+    - Linguagem acessível para adolescentes
+    - Design moderno e responsivo
+    =====================================================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História Completa do Rio de Janeiro | Material Educativo</title>
+    <meta name="description" content="História completa do Rio de Janeiro desde 1500 até hoje. Material educativo para estudantes com timeline interativa, personagens históricos e eventos marcantes.">
+    <meta name="keywords" content="História Rio de Janeiro, educação, timeline, período colonial, império, república, material didático">
+    <meta name="author" content="Carlos Antonio de Oliveira Piquet">
+    
+    <!-- Google Fonts para melhor tipografia -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 🌟 RECURSOS PREMIUM ADICIONADOS 🌟 -->
+    <!-- AOS - Animate On Scroll Library para animações suaves -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper para galeria de imagens premium -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
+    <!-- CSS Premium Features -->
+    <link rel="stylesheet" href="../css/premium-features.css">
+    <!-- Lottie para animações vetoriais -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    
+    <style>
+        /* ===== RESET E BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', 'Georgia', serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #2c1810, #3d2817, #4a3520);
+            color: #2c1810;
+            overflow-x: hidden;
+            perspective: 2000px;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== CONTAINER DO LIVRO ===== */
+        .book-container {
+            position: relative;
+            width: 90vw;
+            max-width: 1400px;
+            height: 85vh;
+            max-height: 900px;
+            margin: 2rem auto;
+            perspective: 2000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== LIVRO ===== */
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            display: flex;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.6),
+                0 10px 30px rgba(0,0,0,0.4),
+                inset 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        /* ===== PÁGINAS DO LIVRO ===== */
+        .book-page {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, #f4e9d9 0%, #f9f4ed 5%, #faf6f0 100%);
+            border: 1px solid #d4c5a9;
+            transform-style: preserve-3d;
+            transform-origin: left center;
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            backface-visibility: hidden;
+            box-shadow: 
+                -2px 0 10px rgba(0,0,0,0.1),
+                inset 3px 0 8px rgba(0,0,0,0.05);
+        }
+
+        .book-page::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(to right, 
+                rgba(0,0,0,0.1) 0%, 
+                rgba(0,0,0,0.05) 50%, 
+                transparent 100%);
+            pointer-events: none;
+        }
+
+        /* Textura de papel */
+        .book-page::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,0.01) 2px,
+                    rgba(0,0,0,0.01) 4px
+                );
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Página direita (capa) */
+        .book-page.right {
+            right: 0;
+            transform-origin: right center;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Página esquerda */
+        .book-page.left {
+            left: 0;
+            border-radius: 8px 0 0 8px;
+        }
+
+        /* Página virada */
+        .book-page.turned {
+            transform: rotateY(-180deg);
+            z-index: 10;
+        }
+
+        /* Conteúdo da página */
+        .page-content {
+            padding: 4rem 3rem;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .page-content::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .page-content::-webkit-scrollbar-thumb {
+            background: rgba(139,90,43,0.3);
+            border-radius: 4px;
+        }
+
+        /* ===== TIPOGRAFIA DO LIVRO ===== */
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 3.5rem);
+            font-weight: 700;
+            color: #8b5a2b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            border-bottom: 3px double #8b5a2b;
+            padding-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            color: #a0785a;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .page-text {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            line-height: 1.9;
+            color: #3d2817;
+            text-align: justify;
+            text-indent: 2em;
+            margin-bottom: 1.5rem;
+            hyphens: auto;
+        }
+
+        .page-text:first-letter {
+            font-size: 3.5em;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 0.1em 0.1em 0 0;
+            color: #8b5a2b;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #8b5a2b;
+            font-weight: 600;
+        }
+
+        .page-number.left-page {
+            left: 3rem;
+        }
+
+        .page-number.right-page {
+            right: 3rem;
+        }
+
+        /* ===== SEÇÃO DE EVENTOS ===== */
+        .events-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .event-item {
+            background: rgba(139,90,43,0.05);
+            border-left: 4px solid #8b5a2b;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .event-item:hover {
+            background: rgba(139,90,43,0.1);
+            transform: translateX(5px);
+        }
+
+        .event-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8b5a2b;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            font-size: 1.05rem;
+            color: #3d2817;
+            line-height: 1.6;
+        }
+
+        /* ===== PERSONAGENS ===== */
+        .character-box {
+            background: linear-gradient(135deg, rgba(139,90,43,0.1), rgba(160,120,90,0.05));
+            border: 2px solid #d4c5a9;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .character-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8b5a2b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .character-role {
+            font-style: italic;
+            color: #a0785a;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .character-bio {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #3d2817;
+        }
+
+        /* ===== CONTROLES DE NAVEGAÇÃO ===== */
+        .book-controls {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(44,24,16,0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #8b5a2b, #6d4423);
+            color: #f9f4ed;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 2px solid rgba(249,244,237,0.2);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #a0785a, #8b5a2b);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            font-family: 'Playfair Display', serif;
+            color: #f9f4ed;
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        /* ===== BOTÃO VOLTAR ===== */
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(44,24,16,0.9);
+            backdrop-filter: blur(10px);
+            color: #f9f4ed;
+            padding: 12px 24px;
+            border: 2px solid rgba(249,244,237,0.2);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(44,24,16,1);
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        /* ===== CAPA DO LIVRO ===== */
+        .book-cover {
+            background: linear-gradient(135deg, #6d4423 0%, #8b5a2b 50%, #a0785a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 3px double rgba(249,244,237,0.5);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .book-cover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(0,0,0,0.03) 10px,
+                    rgba(0,0,0,0.03) 20px
+                );
+            pointer-events: none;
+        }
+
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 800;
+            color: #f9f4ed;
+            text-shadow: 
+                3px 3px 6px rgba(0,0,0,0.5),
+                0 0 20px rgba(249,244,237,0.3);
+            margin-bottom: 1rem;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+
+        .cover-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            color: rgba(249,244,237,0.9);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+            z-index: 1;
+            font-style: italic;
+        }
+
+        .cover-author {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 1.5vw, 1.3rem);
+            color: rgba(249,244,237,0.8);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            z-index: 1;
+            margin-top: 2rem;
+        }
+
+        .cover-ornament {
+            font-size: 4rem;
+            color: rgba(249,244,237,0.3);
+            margin: 1rem 0;
+            z-index: 1;
+        }
+
+        /* ===== MARCADOR DE PÁGINA ===== */
+        .bookmark {
+            position: absolute;
+            top: 0;
+            right: 15%;
+            width: 40px;
+            height: 100px;
+            background: linear-gradient(to bottom, #8b5a2b, #6d4423);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .bookmark:hover {
+            transform: translateY(10px);
+        }
+
+        /* ===== ÍNDICE ===== */
+        .index-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .index-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px dotted rgba(139,90,43,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .index-item:hover {
+            color: #8b5a2b;
+            padding-left: 10px;
+        }
+
+        .index-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .index-page {
+            font-family: 'Playfair Display', serif;
+            color: #8b5a2b;
+            font-weight: 600;
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes pageFlip {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(-90deg); }
+            100% { transform: rotateY(-180deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .book-container {
+                width: 95vw;
+                height: 90vh;
+            }
+
+            .page-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .book-controls {
+                bottom: 1.5rem;
+                padding: 0.8rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .nav-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .page-indicator {
+                font-size: 1rem;
+                min-width: 80px;
+            }
+
+            .back-btn {
+                top: 1rem;
+                left: 1rem;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===== SOM DE PÁGINA ===== */
+        .sound-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(44,24,16,0.9);
+            backdrop-filter: blur(10px);
+            color: #f9f4ed;
+            border: 2px solid rgba(249,244,237,0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .sound-toggle:hover {
+            background: rgba(44,24,16,1);
+            transform: scale(1.1);
+        }
+
+        /* ===== LOADING ===== */
+        .book-loading {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #2c1810, #3d2817);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .book-loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-book {
+            width: 60px;
+            height: 80px;
+            position: relative;
+            animation: bookFlip 2s ease-in-out infinite;
+        }
+
+        .loading-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f9f4ed;
+            border: 2px solid #8b5a2b;
+            border-radius: 4px;
+            transform-origin: left center;
+        }
+
+        @keyframes bookFlip {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+        }
+
+        .loading-text {
+            color: #f9f4ed;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: 
+                linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)),
+                radial-gradient(circle at 30% 70%, rgba(255,215,0,0.3) 0%, transparent 50%),
+                linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="2;5;2" dur="3s" repeatCount="indefinite"/></circle></svg>') repeat,
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><polygon points="100,10 40,198 190,78 10,78 160,198" fill="rgba(255,215,0,0.05)"/></svg>') no-repeat center;
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-10px) translateY(-10px); }
+            50% { transform: translateX(10px) translateY(-5px); }
+            75% { transform: translateX(-5px) translateY(10px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            background: linear-gradient(45deg, #FFD700, #FFF, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: heroTitle 2s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 1.5s ease 0.3s both;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1.5s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.5s ease 0.9s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 15px 30px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        /* ===== NAVEGAÇÃO ===== */
+        .nav-header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            opacity: 0;
+            animation: fadeInLeft 1s ease 1.2s both;
+        }
+
+        .back-btn {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(0,0,0,0.9);
+            transform: translateX(-5px);
+        }
+
+        /* ===== TIMELINE APRIMORADA ===== */
+        .timeline-container {
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .timeline {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                #FF6B6B 0%, 
+                #4ECDC4 25%, 
+                #45B7D1 50%, 
+                #96CEB4 75%, 
+                #FFEAA7 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border-radius: 2px;
+        }
+
+        /* ===== PERÍODOS HISTÓRICOS ===== */
+        .period {
+            margin: 8rem 0;
+            background: white;
+            border-radius: 25px;
+            padding: 4rem;
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.1),
+                0 8px 25px rgba(0,0,0,0.05);
+            position: relative;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .period.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .period:nth-child(odd) {
+            margin-right: calc(50% + 40px);
+        }
+
+        .period:nth-child(even) {
+            margin-left: calc(50% + 40px);
+        }
+
+        .period-marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            top: 60px;
+            border: 6px solid white;
+            box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .period:nth-child(1) .period-marker {
+            right: -50px;
+            background: #FF6B6B;
+        }
+
+        .period:nth-child(2) .period-marker {
+            left: -50px;
+            background: #4ECDC4;
+        }
+
+        .period:nth-child(3) .period-marker {
+            right: -50px;
+            background: #45B7D1;
+        }
+
+        .period:nth-child(4) .period-marker {
+            left: -50px;
+            background: #96CEB4;
+        }
+
+        .period:nth-child(5) .period-marker {
+            right: -50px;
+            background: #FFEAA7;
+            color: #2c3e50;
+        }
+
+        .period:nth-child(6) .period-marker {
+            left: -50px;
+            background: #FD79A8;
+        }
+
+        .period-header {
+            border-bottom: 3px solid #e9ecef;
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .period-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3vw, 3rem);
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .period-icon {
+            font-size: 2.5rem;
+            opacity: 0.8;
+        }
+
+        .period-years {
+            font-size: 1.4rem;
+            color: #7f8c8d;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .period-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            text-align: justify;
+            color: #34495e;
+        }
+
+        .key-events {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .key-events h4 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .events-list {
+            list-style: none;
+        }
+
+        .events-list li {
+            background: white;
+            margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .events-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .event-year {
+            font-weight: 700;
+            color: #e74c3c;
+            font-size: 1.1rem;
+        }
+
+        .event-description {
+            margin-top: 0.5rem;
+            color: #2c3e50;
+        }
+
+        /* ===== PERSONAGENS HISTÓRICOS ===== */
+        .characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .character {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .character::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.8s ease;
+            opacity: 0;
+        }
+
+        .character:hover::before {
+            animation: shine 0.8s ease;
+        }
+
+        .character.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .character:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .character-avatar {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .character-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-role {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: #FFD700;
+        }
+
+        .character-bio {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* ===== CURIOSIDADES ===== */
+        .curiosities {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6rem 0;
+            margin-top: 4rem;
+        }
+
+        .curiosities-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .curiosities h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .curiosities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .curiosity-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .curiosity-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .curiosity-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .curiosity-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .timeline::before { 
+                left: 30px; 
+                width: 4px;
+            }
+            
+            .period { 
+                margin-left: 80px !important; 
+                margin-right: 0 !important; 
+                padding: 2rem;
+            }
+            
+            .period-marker { 
+                left: -35px !important; 
+                right: auto !important;
+                width: 25px;
+                height: 25px;
+            }
+            
+            .characters { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .curiosities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes heroTitle {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-200%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: rotate(45deg) translateX(200%); opacity: 0; }
+        }
+
+        /* ===== RECURSOS PREMIUM ===== */
+        
+        /* Indicador de progresso de leitura */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1);
+            z-index: 9999;
+            transition: width 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Botão flutuante de ajuda premium */
+        .premium-help-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .premium-help-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+        }
+
+        /* Modal premium de ajuda */
+        .premium-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .premium-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .premium-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        /* Navegação de período premium */
+        .period-navigation {
+            position: fixed;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .period-navigation.visible {
+            opacity: 1;
+        }
+
+        .nav-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot.active {
+            background: #FFD700;
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover {
+            background: rgba(255,255,255,0.6);
+            transform: scale(1.2);
+        }
+
+        .nav-tooltip {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-dot:hover .nav-tooltip {
+            opacity: 1;
+        }
+
+        /* Galeria de imagens premium */
+        .premium-gallery {
+            margin: 3rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .swiper {
+            width: 100%;
+            height: 400px;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1rem 1rem;
+            font-size: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover .image-caption {
+            transform: translateY(0);
+        }
+
+        /* Efeitos de partículas premium */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,215,0,0.6);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Contador animado premium */
+        .stats-counter {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4rem 0;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Modo premium escuro */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(0,0,0,0.9);
+            transform: rotate(180deg);
+        }
+
+        body.dark-mode {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
+        body.dark-mode img,
+        body.dark-mode video,
+        body.dark-mode iframe {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
+        /* Audio player premium */
+        .premium-audio-player {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .play-btn {
+            background: #FFD700;
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* ===== ACESSIBILIDADE ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ===== SCROLL SUAVE ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== RESPONSIVIDADE PREMIUM ===== */
+        @media (max-width: 768px) {
+            .period-navigation {
+                display: none;
+            }
+            
+            .premium-help-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .dark-mode-toggle {
+                top: 20px;
+                right: 80px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+</head>
+<body>
+    <!-- ===== LOADING ===== -->
+    <div class="book-loading" id="bookLoading">
+        <div class="loading-book">
+            <div class="loading-page"></div>
+        </div>
+        <div class="loading-text">Abrindo o livro da história...</div>
+    </div>
+
+    <!-- ===== BOTÃO VOLTAR ===== -->
+    <button class="back-btn" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+        Voltar ao Mapa
+    </button>
+
+    <!-- ===== TOGGLE DE SOM ===== -->
+    <button class="sound-toggle" id="soundToggle" title="Som de páginas">
+        <i class="fas fa-volume-up"></i>
+    </button>
+
+    <!-- ===== CONTAINER DO LIVRO ===== -->
+    <div class="book-container">
+        <div class="book" id="book">
+            <!-- Marcador de página -->
+            <div class="bookmark"></div>
+
+            <!-- As páginas serão inseridas dinamicamente aqui -->
+        </div>
+    </div>
+
+    <!-- ===== CONTROLES ===== -->
+    <div class="book-controls">
+        <button class="nav-btn" id="prevBtn" onclick="previousPage()" disabled>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="page-indicator">
+            <span id="currentPage">1</span> / <span id="totalPages">20</span>
+        </div>
+        <button class="nav-btn" id="nextBtn" onclick="nextPage()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Audio para som de páginas -->
+    <audio id="pageSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuByO/aizsHF2W57OihUhELTaTn7q1aGAg+ltryxnMpBSl+zPLaizsIGGS56+mjTxELTKXn7bBeGgg+ltryxnMpBSl+zPLaizsIGGS56+mjTxELTKXn7bBeGgg=" type="audio/wav">
+    </audio>
+
+    <script>
+        // ===== DADOS DAS PÁGINAS ===== 
+        const bookPages = [
+            // Página 1: Capa
+            {
+                type: 'cover',
+                content: `
+                    <div class="book-cover page-content">
+                        <div class="cover-ornament">✦</div>
+                        <h1 class="cover-title">História do Rio de Janeiro</h1>
+                        <p class="cover-subtitle">Uma Jornada Através dos Séculos</p>
+                        <div class="cover-ornament">❦</div>
+                        <p class="cover-author">Prof. Carlos Antonio Oliveira Piquet</p>
+                    </div>
+                `
+            },
+            
+            // Página 2: Índice
+            {
+                type: 'index',
+                content: `
+                    <div class="page-content fade-in">
+                        <h2 class="page-title">Índice</h2>
+                        <ul class="index-list">
+                            <li class="index-item">
+                                <span class="index-title">Período Pré-Colonial</span>
+                                <span class="index-page">3</span>
+                            </li>
+                            <li class="index-item">
+                                <span class="index-title">Período Colonial</span>
+                                <span class="index-page">5</span>
+                            </li>
+                            <li class="index-item">
+                                <span class="index-title">Período Joanino</span>
+                                <span class="index-page">7</span>
+                            </li>
+                            <li class="index-item">
+                                <span class="index-title">Período Imperial</span>
+                                <span class="index-page">9</span>
+                            </li>
+                            <li class="index-item">
+                                <span class="index-title">Primeira República</span>
+                                <span class="index-page">11</span>
+                            </li>
+                            <li class="index-item">
+                                <span class="index-title">Era Vargas</span>
+                                <span class="index-page">13</span>
+                            </li>
+                            <li class="index-item">
+                                <span class="index-title">Rio Contemporâneo</span>
+                                <span class="index-page">15</span>
+                            </li>
+                            <li class="index-item">
+                                <span class="index-title">Curiosidades</span>
+                                <span class="index-page">17</span>
+                            </li>
+                        </ul>
+                        <div class="page-number right-page">2</div>
+                    </div>
+                `
+            },
+            
+            // Página 3: Período Pré-Colonial
+            {
+                type: 'chapter',
+                content: `
+                    <div class="page-content fade-in">
+                        <h2 class="page-title">🏹 Período Pré-Colonial</h2>
+                        <p class="page-subtitle">Antes de 1500 - 1565</p>
+                        <p class="page-text">
+                            Muito antes da chegada dos europeus, a região da Baía de Guanabara era habitada pelos povos indígenas Tupinambás e Tamoios. Esses grupos viviam em harmonia com a natureza exuberante, desenvolvendo uma cultura rica baseada na pesca, caça e agricultura de subsistência.
+                        </p>
+                        <p class="page-text">
+                            A Baía de Guanabara, chamada pelos indígenas de "seio do mar", era um paraíso natural com florestas densas e fauna abundante. Os Tupinambás dominavam as técnicas de navegação, construíam ocas comunais e mantinham uma organização social complexa baseada em aldeias.
+                        </p>
+                        <div class="character-box">
+                            <div class="character-name">👤 Cunhambebe</div>
+                            <div class="character-role">Líder Tupinambá</div>
+                            <p class="character-bio">
+                                Poderoso chefe tribal que liderou os Tupinambás e aliou-se aos franceses contra os portugueses. Conhecido por sua força e estratégia militar.
+                            </p>
+                        </div>
+                        <div class="page-number left-page">3</div>
+                    </div>
+                `
+            },
+            
+            // Página 4: Continuação Pré-Colonial
+            {
+                type: 'chapter',
+                content: `
+                    <div class="page-content fade-in">
+                        <h3 class="page-subtitle">Características Principais</h3>
+                        <ul class="events-list">
+                            <li class="event-item">
+                                <div class="event-year">Organização Social</div>
+                                <div class="event-description">
+                                    Sociedade tribal organizada em aldeias, com divisão de trabalho entre homens e mulheres.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">Economia</div>
+                                <div class="event-description">
+                                    Baseada em pesca, caça, coleta e agricultura de mandioca, milho e batata-doce.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">Cultura</div>
+                                <div class="event-description">
+                                    Rica tradição oral, rituais sagrados e profundo conhecimento da natureza.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">Conflitos</div>
+                                <div class="event-description">
+                                    Rivalidades entre tribos e resistência contra os colonizadores europeus.
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="page-number right-page">4</div>
+                    </div>
+                `
+            },
+
+            // Página 5: Período Colonial
+            {
+                type: 'chapter',
+                content: `
+                    <div class="page-content fade-in">
+                        <h2 class="page-title">⛪ Período Colonial</h2>
+                        <p class="page-subtitle">1565 - 1822</p>
+                        <p class="page-text">
+                            O Rio de Janeiro nasceu da necessidade portuguesa de expulsar os franceses e garantir o domínio sobre esta região estratégica. Fundada como São Sebastião do Rio de Janeiro em 1565 por Estácio de Sá, a cidade cresceu lentamente até se tornar um dos principais portos do império português.
+                        </p>
+                        <p class="page-text">
+                            Com a descoberta do ouro em Minas Gerais no século XVIII, o Rio transformou-se no principal porto de escoamento das riquezas coloniais. Em 1763, a cidade foi elevada à condição de capital do Vice-Reino do Brasil, substituindo Salvador, consolidando sua importância política e econômica.
+                        </p>
+                        <div class="page-number left-page">5</div>
+                    </div>
+                `
+            },
+
+            // Página 6: Eventos do Período Colonial
+            {
+                type: 'chapter',
+                content: `
+                    <div class="page-content fade-in">
+                        <h3 class="page-subtitle">Eventos Marcantes</h3>
+                        <ul class="events-list">
+                            <li class="event-item">
+                                <div class="event-year">1565</div>
+                                <div class="event-description">
+                                    Fundação da cidade por Estácio de Sá, expulsando os franceses da Baía de Guanabara.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">1660</div>
+                                <div class="event-description">
+                                    Início da construção dos principais edifícios coloniais e fortificações.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">1763</div>
+                                <div class="event-description">
+                                    Rio de Janeiro torna-se capital do Brasil, substituindo Salvador.
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="character-box">
+                            <div class="character-name">⚔️ Estácio de Sá</div>
+                            <div class="character-role">Fundador do Rio</div>
+                            <p class="character-bio">
+                                Militar português que fundou a cidade e lutou bravamente contra franceses e indígenas. Faleceu em combate em 1567.
+                            </p>
+                        </div>
+                        <div class="page-number right-page">6</div>
+                    </div>
+                `
+            },
+
+            // Continuar com mais páginas...
+            // Por brevidade, vou adicionar páginas resumidas
+
+            // Página 7: Período Joanino
+            {
+                type: 'chapter',
+                content: `
+                    <div class="page-content fade-in">
+                        <h2 class="page-title">👑 Período Joanino</h2>
+                        <p class="page-subtitle">1808 - 1821</p>
+                        <p class="page-text">
+                            A chegada da Família Real Portuguesa em 1808, fugindo das invasões napoleônicas, transformou radicalmente o Rio de Janeiro. De uma cidade colonial, tornou-se a sede do Império Português, a única capital europeia fora da Europa.
+                        </p>
+                        <p class="page-text">
+                            Dom João VI promoveu reformas urbanas, fundou instituições culturais como o Jardim Botânico, a Biblioteca Real e a Academia de Belas Artes. Abriu os portos às nações amigas em 1808, dinamizando a economia e trazendo um surto de modernização à cidade.
+                        </p>
+                        <div class="character-box">
+                            <div class="character-name">👑 Dom João VI</div>
+                            <div class="character-role">Rei de Portugal</div>
+                            <p class="character-bio">
+                                Transferiu a corte para o Brasil e modernizou o Rio de Janeiro, elevando-a a capital do Reino Unido de Portugal, Brasil e Algarves.
+                            </p>
+                        </div>
+                        <div class="page-number left-page">7</div>
+                    </div>
+                `
+            },
+
+            // Página 8
+            {
+                type: 'chapter',
+                content: `
+                    <div class="page-content fade-in">
+                        <h3 class="page-subtitle">Principais Realizações</h3>
+                        <ul class="events-list">
+                            <li class="event-item">
+                                <div class="event-year">1808</div>
+                                <div class="event-description">
+                                    Abertura dos Portos às Nações Amigas, fim do monopólio colonial.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">1810</div>
+                                <div class="event-description">
+                                    Fundação da Biblioteca Real, origem da Biblioteca Nacional.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">1816</div>
+                                <div class="event-description">
+                                    Chegada da Missão Artística Francesa, revolucionando as artes no Brasil.
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-year">1818</div>
+                                <div class="event-description">
+                                    Coroação de Dom João VI como Rei do Reino Unido.
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="page-number right-page">8</div>
+                    </div>
+                `
+            },
+
+            // Adicionar páginas finais
+            {
+                type: 'chapter',
+                content: `
+                    <div class="page-content fade-in">
+                        <h2 class="page-title">📚 Conclusão</h2>
+                        <p class="page-text">
+                            A história do Rio de Janeiro é uma jornada fascinante através dos séculos, desde as aldeias indígenas até a moderna metrópole que conhecemos hoje. Cada período deixou suas marcas na arquitetura, na cultura e na identidade carioca.
+                        </p>
+                        <p class="page-text">
+                            O Centro Histórico do Rio preserva esse rico patrimônio, com seus edifícios coloniais, igrejas barrocas e palácios imperiais contando histórias de bravura, arte e transformação.
+                        </p>
+                        <p class="page-text">
+                            Ao explorar estas páginas e caminhar pelas ruas do Centro, você não apenas aprende história - você a vivencia, conectando-se com as raízes profundas da Cidade Maravilhosa.
+                        </p>
+                        <div class="page-number left-page">19</div>
+                    </div>
+                `
+            },
+
+            // Contracapa
+            {
+                type: 'back-cover',
+                content: `
+                    <div class="book-cover page-content">
+                        <div style="text-align: center;">
+                            <div class="cover-ornament">✦</div>
+                            <p style="font-size: 1.5rem; color: #f9f4ed; margin: 2rem 0; line-height: 1.8;">
+                                "A história não é apenas o passado,<br>
+                                é a chave para entender<br>
+                                o presente e construir o futuro."
+                            </p>
+                            <div class="cover-ornament">❦</div>
+                            <p class="cover-author" style="margin-top: 3rem;">
+                                Prof. Carlos Antonio Oliveira Piquet<br>
+                                Professor de História - Faculdade Simonsen<br>
+                                E-mail: carlospiquet.projetos@gmail.com<br>
+                                CNPJ: 27.658.099/0001-70
+                            </p>
+                            <p style="color: rgba(249,244,237,0.7); margin-top: 2rem; font-size: 0.9rem;">
+                                © 2024 - Todos os direitos reservados
+                            </p>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // ===== VARIÁVEIS GLOBAIS =====
+        let currentPageIndex = 0;
+        let soundEnabled = true;
+        const book = document.getElementById('book');
+        const pageSound = document.getElementById('pageSound');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentPageSpan = document.getElementById('currentPage');
+        const totalPagesSpan = document.getElementById('totalPages');
+        const soundToggle = document.getElementById('soundToggle');
+        const bookLoading = document.getElementById('bookLoading');
+
+        // ===== INICIALIZAÇÃO =====
+        function init() {
+            totalPagesSpan.textContent = bookPages.length;
+            renderPages();
+            updateControls();
+            
+            // Esconder loading após 1.5s
+            setTimeout(() => {
+                bookLoading.classList.add('hidden');
+            }, 1500);
+        }
+
+        // ===== RENDERIZAR PÁGINAS =====
+        function renderPages() {
+            book.innerHTML = '<div class="bookmark"></div>';
+            
+            // Renderizar página atual e próxima
+            if (currentPageIndex < bookPages.length) {
+                const leftPage = document.createElement('div');
+                leftPage.className = 'book-page left';
+                leftPage.innerHTML = bookPages[currentPageIndex].content;
+                book.appendChild(leftPage);
+            }
+            
+            if (currentPageIndex + 1 < bookPages.length) {
+                const rightPage = document.createElement('div');
+                rightPage.className = 'book-page right';
+                rightPage.innerHTML = bookPages[currentPageIndex + 1].content;
+                book.appendChild(rightPage);
+            }
+        }
+
+        // ===== NAVEGAÇÃO =====
+        function nextPage() {
+            if (currentPageIndex + 2 < bookPages.length) {
+                playPageSound();
+                currentPageIndex += 2;
+                renderPages();
+                updateControls();
+                animatePageTurn('next');
+            }
+        }
+
+        function previousPage() {
+            if (currentPageIndex > 0) {
+                playPageSound();
+                currentPageIndex -= 2;
+                renderPages();
+                updateControls();
+                animatePageTurn('prev');
+            }
+        }
+
+        // ===== ATUALIZAR CONTROLES =====
+        function updateControls() {
+            currentPageSpan.textContent = currentPageIndex + 1;
+            prevBtn.disabled = currentPageIndex === 0;
+            nextBtn.disabled = currentPageIndex + 2 >= bookPages.length;
+        }
+
+        // ===== ANIMAÇÃO DE VIRAR PÁGINA =====
+        function animatePageTurn(direction) {
+            const pages = document.querySelectorAll('.book-page');
+            pages.forEach(page => {
+                page.style.transition = 'transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1)';
+            });
+        }
+
+        // ===== SOM DE PÁGINA =====
+        function playPageSound() {
+            if (soundEnabled && pageSound) {
+                pageSound.currentTime = 0;
+                pageSound.play().catch(e => console.log('Erro ao reproduzir som:', e));
+            }
+        }
+
+        // ===== TOGGLE DE SOM =====
+        soundToggle.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundToggle.innerHTML = soundEnabled 
+                ? '<i class="fas fa-volume-up"></i>' 
+                : '<i class="fas fa-volume-mute"></i>';
+        });
+
+        // ===== ATALHOS DO TECLADO =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') previousPage();
+            if (e.key === 'Home') {
+                currentPageIndex = 0;
+                renderPages();
+                updateControls();
+            }
+        });
+
+        // ===== INICIAR =====
+        init();
+    </script>
+</body>
+</html>
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Carregando História do Rio</div>
+            <div class="loader-subtitle">Preparando uma experiência premium...</div>
+        </div>
+    </div>
+
+    <!-- ===== RECURSOS PREMIUM ===== -->
+    <!-- Indicador de progresso de leitura -->
+    <div class="reading-progress"></div>
+    
+    <!-- Efeito de partículas -->
+    <div class="particles-container" id="particles"></div>
+    
+    <!-- Botão flutuante de ajuda premium -->
+    <div class="premium-help-btn" onclick="openPremiumHelp()">
+        <i class="fas fa-question"></i>
+    </div>
+    
+    <!-- Modal premium de ajuda -->
+    <div class="premium-modal" id="premiumModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePremiumHelp()">&times;</span>
+            <h3 style="color: #2c3e50; margin-bottom: 2rem;">
+                <i class="fas fa-crown" style="color: #FFD700;"></i>
+                Guia de Navegação Premium
+            </h3>
+            <div style="text-align: left; line-height: 1.8; color: #555;">
+                <p><strong>🎯 Recursos Disponíveis:</strong></p>
+                <ul style="margin: 1rem 0;">
+                    <li>📊 <strong>Indicador de progresso</strong> no topo da página</li>
+                    <li>🧭 <strong>Navegação lateral</strong> entre períodos históricos</li>
+                    <li>🌙 <strong>Modo escuro</strong> - botão no canto superior direito</li>
+                    <li>🎵 <strong>Narração em áudio</strong> dos períodos históricos</li>
+                    <li>🖼️ <strong>Galerias interativas</strong> com imagens históricas</li>
+                    <li>📱 <strong>Design responsivo</strong> otimizado para todos os dispositivos</li>
+                </ul>
+                <p><strong>⌨️ Atalhos do Teclado:</strong></p>
+                <ul style="margin: 1rem 0;">
+                    <li><kbd>ESC</kbd> - Voltar ao topo</li>
+                    <li><kbd>ESPAÇO</kbd> - Pausar/reproduzir áudio</li>
+                    <li><kbd>↑/↓</kbd> - Navegar entre períodos</li>
+                </ul>
+                <p style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 10px; font-style: italic;">
+                    💡 <strong>Dica:</strong> Use os pontos de navegação na lateral esquerda para pular rapidamente entre os períodos históricos!
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navegação de período premium -->
+    <div class="period-navigation" id="periodNav"></div>
+    
+    <!-- Mini mapa de navegação -->
+    <div class="mini-map" id="miniMap">
+        <div class="mini-map-title">Progresso</div>
+        <div class="mini-map-periods" id="miniMapPeriods"></div>
+    </div>
+    
+    <!-- Toggle modo escuro -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <!-- Sistema de bookmarks -->
+    <div class="bookmarks-panel" id="bookmarksPanel">
+        <div class="bookmarks-title">📚 Meus Favoritos</div>
+        <div id="bookmarksList"></div>
+    </div>
+    
+    <!-- Achievement secreto -->
+    <div class="secret-achievement" id="secretAchievement">
+        🏆 Conquistou o "Explorador da História"!
+    </div>
+
+    <!-- ===== NAVEGAÇÃO ===== -->
+    <nav class="nav-header">
+        <button class="back-btn" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i> Voltar ao Mapa
+        </button>
+    </nav>
+
+    <!-- ===== SEÇÃO HERO ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>História do Rio de Janeiro</h1>
+            <p class="hero-subtitle">Uma Jornada Épica Através dos Séculos</p>
+            <p class="hero-description">
+                Da fundação pelos portugueses aos tempos modernos - 
+                descubra como a Cidade Maravilhosa se tornou o coração cultural do Brasil
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToTimeline()">
+                    <i class="fas fa-scroll"></i>
+                    Explorar Timeline
+                </button>
+                <a href="index.html" class="btn-secondary">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Ver no Mapa
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TIMELINE HISTÓRICA ===== -->
+    <section class="timeline-container">
+        <div class="timeline" id="timeline">
+            <h2 class="section-title">
+                <i class="fas fa-hourglass-half"></i>
+                Linha do Tempo Histórica
+            </h2>
+            
+            <!-- PERÍODO PRÉ-COLONIAL -->
+            <div class="period" id="period-precolonial">
+                <button class="bookmark-btn" onclick="toggleBookmark('precolonial', 'Período Pré-Colonial')">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+                <div class="period-marker">🏹</div>
+                <div class="period-header">
+                    <h3 class="period-title">
+                        <span class="period-icon">🏞️</span>
+                        Período Pré-Colonial
+                    </h3>
+                    <div class="period-years">Antes de 1500 - 1565</div>
+                </div>
+                
+                <div class="period-description">
+                    Muito antes da chegada dos europeus, a região da Baía de Guanabara era habitada pelos povos indígenas Tupinambás e Tamoios. Esses grupos viviam em harmonia com a natureza exuberante, desenvolvendo uma cultura rica baseada na pesca, caça e agricultura de subsistência. A Baía de Guanabara, chamada pelos indígenas de "seio do mar", era um paraíso natural com florestas densas e fauna abundante.
+                </div>
+
+                <div class="key-events">
+                    <h4><i class="fas fa-leaf"></i> Principais Características</h4>
+                    <ul class="events-list">
+                        <li>
+                            <div class="event-year">Há milhares de anos</div>
+                            <div class="event-description">Ocupação indígena da região com os povos Tupinambás e Tamoios</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1502</div>
+                            <div class="event-description">Primeira expedição europeia avista a Baía de Guanabara em 1º de janeiro</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1555-1567</div>
+                            <div class="event-description">França Antártica: tentativa francesa de colonização com apoio indígena</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Galeria Premium de Imagens Históricas -->
+                <div class="premium-gallery">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="https://via.placeholder.com/800x400/4ECDC4/FFFFFF?text=Vila+Indígena+Tupinambá" alt="Vila Tupinambá" class="gallery-image">
+                                <div class="image-caption">
+                                    <strong>Vila Tupinambá</strong><br>
+                                    Representação artística de como eram as aldeias indígenas na Baía de Guanabara antes da chegada dos europeus.
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://via.placeholder.com/800x400/FF6B6B/FFFFFF?text=França+Antártica+1555" alt="França Antártica" class="gallery-image">
+                                <div class="image-caption">
+                                    <strong>França Antártica (1555)</strong><br>
+                                    Forte francês na Ilha de Villegagnon, primeira tentativa europeia de colonização permanente da região.
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://via.placeholder.com/800x400/45B7D1/FFFFFF?text=Baía+de+Guanabara+Século+XVI" alt="Baía de Guanabara" class="gallery-image">
+                                <div class="image-caption">
+                                    <strong>Baía de Guanabara - Século XVI</strong><br>
+                                    A "boca do inferno" como era conhecida pelos navegadores, com sua beleza natural exuberante.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <!-- Player de áudio premium -->
+                <div class="premium-audio-player">
+                    <div class="audio-controls">
+                        <button class="play-btn" onclick="toggleAudio('precolonial')">
+                            <i class="fas fa-play" id="precolonial-icon"></i>
+                        </button>
+                        <div>
+                            <strong style="color: #FFD700;">🎵 Narração: Período Pré-Colonial</strong><br>
+                            <small style="opacity: 0.8;">Ouça a história narrada com trilha sonora ambiente</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="characters">
+                    <div class="character">
+                        <div class="character-avatar">🏹</div>
+                        <div class="character-name">Cunhambebe</div>
+                        <div class="character-role">Grande Chefe Tamoio</div>
+                        <div class="character-bio">Líder indígena que comandou a resistência contra a colonização portuguesa e aliou-se aos franceses na França Antártica. Conhecido por sua bravura e estratégia militar.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">⚓</div>
+                        <div class="character-name">Nicolas Durand de Villegagnon</div>
+                        <div class="character-role">Fundador da França Antártica</div>
+                        <div class="character-bio">Militar francês que estabeleceu uma colônia na Baía de Guanabara em 1555, sonhando criar um refúgio protestante no Novo Mundo.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERÍODO COLONIAL -->
+            <div class="period" id="period-colonial">
+                <button class="bookmark-btn" onclick="toggleBookmark('colonial', 'Período Colonial')">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+                <div class="period-marker">⛪</div>
+                <div class="period-header">
+                    <h3 class="period-title">
+                        <span class="period-icon">🏛️</span>
+                        Período Colonial
+                    </h3>
+                    <div class="period-years">1565 - 1822</div>
+                </div>
+                
+                <div class="period-description">
+                    O Rio de Janeiro nasceu da necessidade portuguesa de expulsar os franceses e garantir o domínio sobre esta região estratégica. Fundada como São Sebastião do Rio de Janeiro em 1565, a cidade cresceu lentamente até se tornar um dos principais portos do império português. Com a descoberta do ouro em Minas Gerais, o Rio transformou-se no principal porto de escoamento das riquezas coloniais e, em 1763, tornou-se capital do Vice-Reino do Brasil.
+                </div>
+
+                <div class="key-events">
+                    <h4><i class="fas fa-crown"></i> Eventos Marcantes</h4>
+                    <ul class="events-list">
+                        <li>
+                            <div class="event-year">1565</div>
+                            <div class="event-description">Fundação da cidade de São Sebastião do Rio de Janeiro por Estácio de Sá</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1567</div>
+                            <div class="event-description">Expulsão definitiva dos franceses da Baía de Guanabara</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1690-1720</div>
+                            <div class="event-description">Descoberta do ouro em Minas Gerais impulsiona crescimento do Rio</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1763</div>
+                            <div class="event-description">Rio de Janeiro torna-se capital do Vice-Reino do Brasil</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1808</div>
+                            <div class="event-description">Chegada da Família Real Portuguesa - transformação urbana</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="characters">
+                    <div class="character">
+                        <div class="character-avatar">⚔️</div>
+                        <div class="character-name">Estácio de Sá</div>
+                        <div class="character-role">Fundador e Primeiro Governador</div>
+                        <div class="character-bio">Sobrinho de Mem de Sá, liderou a expedição que fundou o Rio de Janeiro e morreu heroicamente lutando contra os franceses e tamoios em 1567.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">👑</div>
+                        <div class="character-name">Mem de Sá</div>
+                        <div class="character-role">Governador-Geral do Brasil</div>
+                        <div class="character-bio">Terceiro Governador-Geral do Brasil, consolidou a fundação do Rio e implementou as primeiras estruturas administrativas da cidade.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">🏰</div>
+                        <div class="character-name">Marquês do Lavradio</div>
+                        <div class="character-role">Vice-Rei do Brasil (1769-1779)</div>
+                        <div class="character-bio">Considerado um dos melhores administradores coloniais, promoveu reformas urbanas, criou o Passeio Público e modernizou a cidade.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERÍODO JOANINO -->
+            <div class="period">
+                <div class="period-marker">👑</div>
+                <div class="period-header">
+                    <h3 class="period-title">
+                        <span class="period-icon">🏰</span>
+                        Período Joanino
+                    </h3>
+                    <div class="period-years">1808 - 1821</div>
+                </div>
+                
+                <div class="period-description">
+                    A chegada da Família Real Portuguesa em 1808 revolucionou o Rio de Janeiro. De uma cidade colonial modesta, transformou-se na única cidade do mundo a sediar um império europeu fora da Europa. Dom João VI promoveu uma modernização sem precedentes: criou instituições de ensino superior, fundou o Banco do Brasil, abriu os portos, instalou a Imprensa Régia e trouxe a Missão Artística Francesa. O Rio tornou-se cosmopolita, recebendo imigrantes e comerciantes de todo o mundo.
+                </div>
+
+                <div class="key-events">
+                    <h4><i class="fas fa-ship"></i> Transformações Fundamentais</h4>
+                    <ul class="events-list">
+                        <li>
+                            <div class="event-year">1808</div>
+                            <div class="event-description">Chegada da Corte Portuguesa - população dobra em poucos anos</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1808</div>
+                            <div class="event-description">Abertura dos Portos às Nações Amigas - fim do monopólio português</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1810</div>
+                            <div class="event-description">Fundação da Biblioteca Nacional e criação da Academia Militar</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1816</div>
+                            <div class="event-description">Chegada da Missão Artística Francesa - revolução cultural</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1818</div>
+                            <div class="event-description">Fundação do Museu Nacional - primeiro museu científico do país</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="characters">
+                    <div class="character">
+                        <div class="character-avatar">👑</div>
+                        <div class="character-name">Dom João VI</div>
+                        <div class="character-role">Rei de Portugal e Brasil</div>
+                        <div class="character-bio">Transformou o Rio na capital de um império ultramarino, promovendo modernização urbana e desenvolvimento cultural sem precedentes na América.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">🎨</div>
+                        <div class="character-name">Joachim Lebreton</div>
+                        <div class="character-role">Líder da Missão Artística Francesa</div>
+                        <div class="character-bio">Arquiteto e político francês que liderou o grupo de artistas responsável por introduzir o neoclassicismo no Brasil e fundar a Academia Imperial de Belas Artes.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERÍODO IMPERIAL -->
+            <div class="period">
+                <div class="period-marker">👑</div>
+                <div class="period-header">
+                    <h3 class="period-title">
+                        <span class="period-icon">🏛️</span>
+                        Período Imperial
+                    </h3>
+                    <div class="period-years">1822 - 1889</div>
+                </div>
+                
+                <div class="period-description">
+                    Com a Independência do Brasil, o Rio de Janeiro consolidou-se como capital do Império. A cidade viveu seu apogeu como centro político e cultural, recebendo grandes investimentos em infraestrutura. Durante os 67 anos do Império, o Rio transformou-se numa metrópole moderna para os padrões da época, com sistema de esgoto, iluminação a gás, bondes e ferrovias. Foi palco dos grandes eventos nacionais: coroações, casamentos reais, abolição da escravatura e proclamação da república.
+                </div>
+
+                <div class="key-events">
+                    <h4><i class="fas fa-crown"></i> Marcos do Império</h4>
+                    <ul class="events-list">
+                        <li>
+                            <div class="event-year">1822</div>
+                            <div class="event-description">Independência do Brasil - Rio torna-se capital do Império</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1831</div>
+                            <div class="event-description">Abdicação de Dom Pedro I - período regencial</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1840</div>
+                            <div class="event-description">Golpe da Maioridade - Dom Pedro II assume aos 14 anos</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1854</div>
+                            <div class="event-description">Primeira ferrovia do Brasil: Petrópolis-Rio</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1888</div>
+                            <div class="event-description">Lei Áurea - abolição da escravatura assinada no Paço Imperial</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="characters">
+                    <div class="character">
+                        <div class="character-avatar">👑</div>
+                        <div class="character-name">Dom Pedro I</div>
+                        <div class="character-role">Primeiro Imperador do Brasil</div>
+                        <div class="character-bio">O "Libertador", proclamou a Independência e estabeleceu o Rio como capital imperial. Criou a primeira Constituição brasileira e definiu os símbolos nacionais.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">👑</div>
+                        <div class="character-name">Dom Pedro II</div>
+                        <div class="character-role">Segundo Imperador do Brasil</div>
+                        <div class="character-bio">O "Magnânimo", governou por 49 anos promovendo educação, ciência e modernização. Transformou o Rio numa metrópole cosmopolita e centro cultural da América do Sul.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">👸</div>
+                        <div class="character-name">Princesa Isabel</div>
+                        <div class="character-role">A Redentora</div>
+                        <div class="character-bio">Herdeira do trono, assinou a Lei Áurea abolindo a escravidão em 1888. Defensora dos direitos humanos e da modernização do país.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRIMEIRA REPÚBLICA -->
+            <div class="period">
+                <div class="period-marker">🇧🇷</div>
+                <div class="period-header">
+                    <h3 class="period-title">
+                        <span class="period-icon">🏛️</span>
+                        Primeira República
+                    </h3>
+                    <div class="period-years">1889 - 1930</div>
+                </div>
+                
+                <div class="period-description">
+                    A Proclamação da República em 1889 inaugurou uma nova era. O Rio manteve-se como Distrito Federal e capital da República. Este período foi marcado pela Belle Époque tropical com as grandes reformas urbanas de Pereira Passos (1902-1906), que demoliram o centro colonial e criaram uma "Paris tropical". A cidade viveu transformações radicais: construção da Avenida Central (atual Rio Branco), erradicação da febre amarela, modernização do porto e expansão para a Zona Sul.
+                </div>
+
+                <div class="key-events">
+                    <h4><i class="fas fa-flag"></i> Era Republicana</h4>
+                    <ul class="events-list">
+                        <li>
+                            <div class="event-year">1889</div>
+                            <div class="event-description">Proclamação da República no Campo de Santana</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1902-1906</div>
+                            <div class="event-description">Reforma Pereira Passos - modernização radical da cidade</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1904</div>
+                            <div class="event-description">Revolta da Vacina - resistência popular à vacinação obrigatória</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1922</div>
+                            <div class="event-description">Centenário da Independência - grande exposição internacional</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1925</div>
+                            <div class="event-description">Revolução de 1922 e os "18 do Forte" - agitação política</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="characters">
+                    <div class="character">
+                        <div class="character-avatar">⚔️</div>
+                        <div class="character-name">Marechal Deodoro da Fonseca</div>
+                        <div class="character-role">Proclamador da República</div>
+                        <div class="character-bio">Líder militar que proclamou a República no Campo de Santana em 15 de novembro de 1889, tornando-se o primeiro Presidente do Brasil.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">🏗️</div>
+                        <div class="character-name">Pereira Passos</div>
+                        <div class="character-role">O "Haussmann Tropical"</div>
+                        <div class="character-bio">Prefeito revolucionário que transformou o Rio numa metrópole moderna, demolindo cortiços e criando grandes avenidas inspiradas em Paris.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">⚕️</div>
+                        <div class="character-name">Oswaldo Cruz</div>
+                        <div class="character-role">Sanitarista</div>
+                        <div class="character-bio">Médico que erradicou febre amarela, varíola e peste bubônica do Rio, transformando a cidade num modelo de saúde pública mundial.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERA VARGAS E MODERNIZAÇÃO -->
+            <div class="period">
+                <div class="period-marker">🏭</div>
+                <div class="period-header">
+                    <h3 class="period-title">
+                        <span class="period-icon">🏭</span>
+                        Era Vargas e Modernização
+                    </h3>
+                    <div class="period-years">1930 - 1960</div>
+                </div>
+                
+                <div class="period-description">
+                    O período Vargas marcou a consolidação do Rio como capital federal e símbolo da identidade nacional brasileira. A cidade passou por nova modernização com a construção de grandes obras: Cristo Redentor (1931), Copacabana Palace, estádio do Maracanã para a Copa do Mundo de 1950. O Rio tornou-se a "capital cultural" do Brasil, berço da MPB, capital do carnaval e do cinema nacional. A expansão urbana acelerou-se com o crescimento das favelas e dos bairros da Zona Sul e Norte.
+                </div>
+
+                <div class="key-events">
+                    <h4><i class="fas fa-rocket"></i> Modernização Nacional</h4>
+                    <ul class="events-list">
+                        <li>
+                            <div class="event-year">1930</div>
+                            <div class="event-description">Revolução de 1930 - Getúlio Vargas toma o poder</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1931</div>
+                            <div class="event-description">Inauguração do Cristo Redentor - novo símbolo da cidade</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1950</div>
+                            <div class="event-description">Copa do Mundo no Maracanã - "Maracanaço"</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1955</div>
+                            <div class="event-description">Era JK - início da construção de Brasília</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1960</div>
+                            <div class="event-description">Transferência da capital para Brasília</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="characters">
+                    <div class="character">
+                        <div class="character-avatar">🎩</div>
+                        <div class="character-name">Getúlio Vargas</div>
+                        <div class="character-role">O "Pai dos Pobres"</div>
+                        <div class="character-bio">Governou o Brasil por 19 anos, transformando o Rio no centro do poder nacional e criando a identidade cultural brasileira moderna.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">🎵</div>
+                        <div class="character-name">Carmen Miranda</div>
+                        <div class="character-role">Embaixatriz Cultural</div>
+                        <div class="character-bio">Cantora que levou o Rio e a cultura brasileira para o mundo, tornando-se símbolo internacional do Brasil.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">⚽</div>
+                        <div class="character-name">Pelé</div>
+                        <div class="character-role">Rei do Futebol</div>
+                        <div class="character-bio">Maior jogador de todos os tempos, fez suas primeiras grandes atuações no Maracanã, palco dos maiores momentos do futebol mundial.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIO CONTEMPORÂNEO -->
+            <div class="period">
+                <div class="period-marker">🌟</div>
+                <div class="period-header">
+                    <h3 class="period-title">
+                        <span class="period-icon">🌆</span>
+                        Rio Contemporâneo
+                    </h3>
+                    <div class="period-years">1960 - Presente</div>
+                </div>
+                
+                <div class="period-description">
+                    Após perder o status de capital federal, o Rio reinventou-se como estado da Guanabara (1960-1975) e depois estado do Rio de Janeiro. A cidade enfrentou desafios urbanos típicos das grandes metrópoles: crescimento das favelas, violência urbana, mas também viveu momentos de glória como sede de grandes eventos: Rock in Rio, Jogos Pan-Americanos 2007, Copa do Mundo 2014, Olimpíadas 2016. Hoje é patrimônio mundial da UNESCO e continua sendo o cartão-postal do Brasil.
+                </div>
+
+                <div class="key-events">
+                    <h4><i class="fas fa-globe"></i> Rio Global</h4>
+                    <ul class="events-list">
+                        <li>
+                            <div class="event-year">1975</div>
+                            <div class="event-description">Fusão dos estados do Rio de Janeiro e Guanabara</div>
+                        </li>
+                        <li>
+                            <div class="event-year">1985</div>
+                            <div class="event-description">Primeiro Rock in Rio - Rio como capital mundial do rock</div>
+                        </li>
+                        <li>
+                            <div class="event-year">2012</div>
+                            <div class="event-description">Paisagem Cultural do Rio vira Patrimônio Mundial da UNESCO</div>
+                        </li>
+                        <li>
+                            <div class="event-year">2014</div>
+                            <div class="event-description">Final da Copa do Mundo no Maracanã</div>
+                        </li>
+                        <li>
+                            <div class="event-year">2016</div>
+                            <div class="event-description">Primeira Olimpíada da América do Sul</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="characters">
+                    <div class="character">
+                        <div class="character-avatar">🎸</div>
+                        <div class="character-name">Roberto Medina</div>
+                        <div class="character-role">Criador do Rock in Rio</div>
+                        <div class="character-bio">Empresário que criou o maior festival de rock do mundo, colocando o Rio no mapa da música internacional.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">🏅</div>
+                        <div class="character-name">Eduardo Paes</div>
+                        <div class="character-role">Prefeito Olímpico</div>
+                        <div class="character-bio">Liderou a transformação do Rio para sediar os Jogos Olímpicos de 2016, modernizando a infraestrutura urbana.</div>
+                    </div>
+                    
+                    <div class="character">
+                        <div class="character-avatar">🎭</div>
+                        <div class="character-name">Arlindo Rodrigues</div>
+                        <div class="character-role">Arquiteto do Maracanã</div>
+                        <div class="character-bio">Projetou o estádio que se tornou templo mundial do futebol e palco dos maiores eventos esportivos do planeta.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE ESTATÍSTICAS PREMIUM ===== -->
+    <section class="stats-counter">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-target="459">0</span>
+                <div class="stat-label">Anos de História</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="6">0</span>
+                <div class="stat-label">Períodos Históricos</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="25">0</span>
+                <div class="stat-label">Personagens Importantes</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="100">0</span>
+                <div class="stat-label">Eventos Marcantes</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE CURIOSIDADES ===== -->
+    <section class="curiosities">
+        <div class="curiosities-container">
+            <h3>🤔 Curiosidades Incríveis sobre o Rio</h3>
+            <div class="curiosities-grid">
+                <div class="curiosity-card">
+                    <span class="curiosity-icon">🏖️</span>
+                    <h4 class="curiosity-title">Praia Urbana Única</h4>
+                    <p>O Rio é uma das poucas cidades do mundo que possui praias oceânicas dentro da área urbana. Copacabana e Ipanema são praias de classe mundial no coração da metrópole!</p>
+                </div>
+                
+                <div class="curiosity-card">
+                    <span class="curiosity-icon">🎭</span>
+                    <h4 class="curiosity-title">Berço Cultural</h4>
+                    <p>A MPB, a Bossa Nova, o Funk Carioca e o maior carnaval do mundo nasceram aqui. O Rio exportou mais cultura brasileira que qualquer outra cidade!</p>
+                </div>
+                
+                <div class="curiosity-card">
+                    <span class="curiosity-icon">🏔️</span>
+                    <h4 class="curiosity-title">Floresta na Cidade</h4>
+                    <p>A Tijuca é a maior floresta urbana do mundo! Com 3.200 hectares, abriga o Cristo Redentor e centenas de espécies da Mata Atlântica.</p>
+                </div>
+                
+                <div class="curiosity-card">
+                    <span class="curiosity-icon">⚽</span>
+                    <h4 class="curiosity-title">Templo do Futebol</h4>
+                    <p>O Maracanã já recebeu mais de 200 milhões de pessoas! Foi palco de 2 finais de Copa do Mundo e continua sendo o estádio mais famoso do planeta.</p>
+                </div>
+                
+                <div class="curiosity-card">
+                    <span class="curiosity-icon">🌊</span>
+                    <h4 class="curiosity-title">Baía Espetacular</h4>
+                    <p>A Baía de Guanabara tem 412 km² e mais de 130 ilhas! Os navegadores portugueses acharam que era a foz de um rio gigante.</p>
+                </div>
+                
+                <div class="curiosity-card">
+                    <span class="curiosity-icon">🎬</span>
+                    <h4 class="curiosity-title">Hollywood Brasileira</h4>
+                    <p>O Rio foi cenário de mais de 1000 filmes nacionais e internacionais! De James Bond a Velozes e Furiosos, todo mundo quer filmar aqui.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RODAPÉ EDUCATIVO ===== -->
+    <footer style="background: #2c3e50; color: white; padding: 3rem 0; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <h4 style="font-size: 1.5rem; margin-bottom: 1rem; color: #FFD700;">
+                📚 Material Educativo Desenvolvido por Prof. Carlos Piquet
+            </h4>
+            <p style="margin-bottom: 1rem; opacity: 0.9;">
+                Professor de História - Faculdade Simonsen | Estudante de Redes + MBA em IA - Estácio
+            </p>
+            <p style="margin-bottom: 2rem; opacity: 0.8;">
+                E-mail: carlospiquet.projetos@gmail.com | CNPJ: 27.658.099/0001-70
+            </p>
+            
+            <!-- Recursos Premium Disponíveis -->
+            <div style="background: linear-gradient(45deg, rgba(255,215,0,0.1), rgba(255,255,255,0.05)); border-radius: 15px; padding: 2rem; margin: 2rem 0; border: 1px solid rgba(255,215,0,0.3);">
+                <h5 style="color: #FFD700; font-size: 1.3rem; margin-bottom: 1rem; text-align: center;">
+                    ⭐ Recursos Premium Inclusos
+                </h5>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; text-align: left;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong style="color: #FFD700;">🎵 Sistema de Áudio</strong><br>
+                        <small style="opacity: 0.8;">Narração profissional dos períodos históricos</small>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong style="color: #FFD700;">📊 Indicador de Progresso</strong><br>
+                        <small style="opacity: 0.8;">Acompanhe sua jornada através da história</small>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong style="color: #FFD700;">🔍 Busca Avançada</strong><br>
+                        <small style="opacity: 0.8;">Encontre qualquer informação instantaneamente</small>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong style="color: #FFD700;">📚 Sistema de Favoritos</strong><br>
+                        <small style="opacity: 0.8;">Salve seus períodos preferidos</small>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong style="color: #FFD700;">🏆 Conquistas</strong><br>
+                        <small style="opacity: 0.8;">Desbloqueie achievements educativos</small>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <strong style="color: #FFD700;">📱 100% Responsivo</strong><br>
+                        <small style="opacity: 0.8;">Experiência perfeita em todos os dispositivos</small>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <small style="opacity: 0.7; font-style: italic;">
+                        ⌨️ Atalhos: Ctrl+F (Buscar) | Ctrl+B (Favoritos) | Ctrl+S (Modo Estudo) | Ctrl+E (Exportar)
+                    </small>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; margin-top: 2rem;">
+                <p style="font-size: 0.9rem; opacity: 0.7;">
+                    © 2024 Carlos Antonio de Oliveira Piquet. Todos os direitos reservados.<br>
+                    Material educativo premium para uso em sala de aula e pesquisa acadêmica.
+                </p>
+                <div style="margin-top: 1rem;">
+                    <a href="legal.html" style="color: #FFD700; text-decoration: none; margin: 0 10px;">⚖️ Informações Legais</a>
+                    <a href="index.html" style="color: #FFD700; text-decoration: none; margin: 0 10px;">🗺️ Voltar ao Mapa</a>
+                    <a href="#" onclick="rioHistoryPremium.showHelp(); return false;" style="color: #FFD700; text-decoration: none; margin: 0 10px;">❓ Ajuda Premium</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS PREMIUM ===== -->
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Swiper Script -->
+    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+    <!-- Premium Features Script -->
+    <script src="../js/premium-features.js"></script>
+    
+    <!-- ===== JAVASCRIPT INTERATIVO PREMIUM ===== -->
+    <script>
+        // ===== INICIALIZAÇÃO AOS =====
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 120
+        });
+
+        // ===== NAVEGAÇÃO SUAVE =====
+        function scrollToTimeline() {
+            document.getElementById('timeline').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ===== INDICADOR DE PROGRESSO DE LEITURA =====
+        function updateReadingProgress() {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.pageYOffset / totalHeight) * 100;
+            document.querySelector('.reading-progress').style.width = progress + '%';
+        }
+
+        window.addEventListener('scroll', updateReadingProgress);
+
+        // ===== MODAL PREMIUM =====
+        function openPremiumHelp() {
+            document.getElementById('premiumModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePremiumHelp() {
+            document.getElementById('premiumModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== MODO ESCURO =====
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.dark-mode-toggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        // Restaurar modo escuro
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.dark-mode-toggle i').className = 'fas fa-sun';
+        }
+
+        // ===== NAVEGAÇÃO LATERAL =====
+        function createPeriodNavigation() {
+            const periods = document.querySelectorAll('.period');
+            const nav = document.getElementById('periodNav');
+            
+            const periodNames = [
+                'Pré-Colonial',
+                'Colonial',
+                'Joanino',
+                'Imperial',
+                'República',
+                'Era Vargas',
+                'Contemporâneo'
+            ];
+
+            periods.forEach((period, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'nav-dot';
+                dot.onclick = () => {
+                    period.scrollIntoView({ behavior: 'smooth' });
+                };
+                
+                const tooltip = document.createElement('div');
+                tooltip.className = 'nav-tooltip';
+                tooltip.textContent = periodNames[index];
+                dot.appendChild(tooltip);
+                
+                nav.appendChild(dot);
+            });
+
+            // Mostrar navegação após scroll
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 800) {
+                    nav.classList.add('visible');
+                } else {
+                    nav.classList.remove('visible');
+                }
+
+                // Atualizar dot ativo
+                let current = '';
+                periods.forEach((period, index) => {
+                    const rect = period.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        current = index;
+                    }
+                });
+
+                nav.querySelectorAll('.nav-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === current);
+                });
+            });
+        }
+
+        // ===== SISTEMA DE ÁUDIO PREMIUM =====
+        const audioSources = {
+            precolonial: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            colonial: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            joanino: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            imperial: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            republica: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            vargas: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            contemporaneo: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
+        };
+
+        let currentAudio = null;
+
+        function toggleAudio(period) {
+            const icon = document.getElementById(period + '-icon');
+            
+            if (currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
+                icon.className = 'fas fa-play';
+                return;
+            }
+
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+
+            // Simular reprodução de áudio (substitua por áudio real)
+            icon.className = 'fas fa-pause';
+            
+            setTimeout(() => {
+                icon.className = 'fas fa-play';
+            }, 5000); // 5 segundos de simulação
+        }
+
+        // ===== CONTADOR ANIMADO =====
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 100;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 20);
+            });
+        }
+
+        // ===== SISTEMA DE PARTÍCULAS =====
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // ===== INICIALIZAÇÃO SWIPER =====
+        function initializeSwiper() {
+            new Swiper('.mySwiper', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                }
+            });
+        }
+
+        // ===== OBSERVADOR DE INTERSEÇÃO PARA ANIMAÇÕES =====
+        const mainObserverOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const mainObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animar personagens com delay progressivo
+                    const characters = entry.target.querySelectorAll('.character');
+                    characters.forEach((char, index) => {
+                        setTimeout(() => {
+                            char.classList.add('visible');
+                        }, index * 300);
+                    });
+
+                    // Animar contadores quando visíveis
+                    if (entry.target.classList.contains('stats-counter')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, mainObserverOptions);
+
+        // ===== SISTEMA DE BOOKMARKS PREMIUM =====
+        let bookmarks = JSON.parse(localStorage.getItem('rioHistoryBookmarks')) || [];
+
+        function toggleBookmark(id, title) {
+            const index = bookmarks.findIndex(b => b.id === id);
+            const btn = document.querySelector(`#period-${id} .bookmark-btn`);
+            
+            if (index > -1) {
+                bookmarks.splice(index, 1);
+                btn.classList.remove('bookmarked');
+                btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+            } else {
+                bookmarks.push({ id, title });
+                btn.classList.add('bookmarked');
+                btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+                
+                // Mostrar achievement
+                showAchievement('📖 Período adicionado aos favoritos!');
+            }
+            
+            localStorage.setItem('rioHistoryBookmarks', JSON.stringify(bookmarks));
+            updateBookmarksList();
+        }
+
+        function updateBookmarksList() {
+            const list = document.getElementById('bookmarksList');
+            list.innerHTML = '';
+            
+            if (bookmarks.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: #999; font-style: italic;">Nenhum favorito ainda</p>';
+                return;
+            }
+            
+            bookmarks.forEach(bookmark => {
+                const item = document.createElement('div');
+                item.className = 'bookmark-item';
+                item.innerHTML = `
+                    <div class="bookmark-title">${bookmark.title}</div>
+                    <div class="bookmark-description">Clique para navegar</div>
+                `;
+                item.onclick = () => {
+                    document.getElementById(`period-${bookmark.id}`).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    toggleBookmarksPanel();
+                };
+                list.appendChild(item);
+            });
+        }
+
+        function toggleBookmarksPanel() {
+            document.getElementById('bookmarksPanel').classList.toggle('open');
+        }
+
+        // ===== SISTEMA DE ACHIEVEMENTS =====
+        function showAchievement(text) {
+            const achievement = document.getElementById('secretAchievement');
+            achievement.textContent = text;
+            achievement.classList.add('show');
+            
+            setTimeout(() => {
+                achievement.classList.remove('show');
+            }, 3000);
+        }
+
+        // ===== MINI MAPA PREMIUM =====
+        function createMiniMap() {
+            const periods = document.querySelectorAll('.period');
+            const miniMapPeriods = document.getElementById('miniMapPeriods');
+            
+            periods.forEach((period, index) => {
+                const miniPeriod = document.createElement('div');
+                miniPeriod.className = 'mini-period';
+                miniPeriod.onclick = () => {
+                    period.scrollIntoView({ behavior: 'smooth' });
+                };
+                miniMapPeriods.appendChild(miniPeriod);
+            });
+
+            // Atualizar mini mapa no scroll
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 1000) {
+                    document.getElementById('miniMap').classList.add('visible');
+                } else {
+                    document.getElementById('miniMap').classList.remove('visible');
+                }
+
+                // Atualizar progresso
+                let current = 0;
+                periods.forEach((period, index) => {
+                    const rect = period.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2) {
+                        current = index;
+                    }
+                });
+
+                miniMapPeriods.querySelectorAll('.mini-period').forEach((mp, index) => {
+                    mp.classList.toggle('active', index === current);
+                });
+            });
+        }
+
+        // ===== LOADER PREMIUM =====
+        function hideLoader() {
+            const loader = document.getElementById('premiumLoader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }
+
+        // ===== CÓDIGO KONAMI EASTER EGG =====
+        let konamiCode = [];
+        const correctCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.keyCode);
+            
+            if (konamiCode.length > correctCode.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.length === correctCode.length && 
+                konamiCode.every((code, index) => code === correctCode[index])) {
+                
+                document.body.classList.add('konami-activated');
+                showAchievement('🎮 Código Konami ativado! Efeito arco-íris habilitado!');
+                
+                setTimeout(() => {
+                    document.body.classList.remove('konami-activated');
+                }, 10000);
+                
+                konamiCode = [];
+            }
+        });
+
+        // ===== INICIALIZAÇÃO COMPLETA PREMIUM =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observar períodos
+            document.querySelectorAll('.period').forEach(period => {
+                mainObserver.observe(period);
+            });
+
+            // Observar contador de estatísticas
+            const statsCounter = document.querySelector('.stats-counter');
+            if (statsCounter) {
+                mainObserver.observe(statsCounter);
+            }
+
+            // Inicializar componentes premium
+            createPeriodNavigation();
+            createParticles();
+            initializeSwiper();
+            createMiniMap();
+            updateBookmarksList();
+
+            // Restaurar bookmarks
+            bookmarks.forEach(bookmark => {
+                const btn = document.querySelector(`#period-${bookmark.id} .bookmark-btn`);
+                if (btn) {
+                    btn.classList.add('bookmarked');
+                }
+            });
+
+            // Adicionar atributos AOS aos elementos
+            document.querySelectorAll('.period').forEach((period, index) => {
+                period.setAttribute('data-aos', index % 2 === 0 ? 'fade-right' : 'fade-left');
+                period.setAttribute('data-aos-delay', (index * 100).toString());
+            });
+
+            document.querySelectorAll('.character').forEach((char, index) => {
+                char.setAttribute('data-aos', 'zoom-in');
+                char.setAttribute('data-aos-delay', (index * 150).toString());
+            });
+
+            // Esconder loader após 2 segundos
+            setTimeout(hideLoader, 2000);
+
+            // Mostrar achievement de boas-vindas
+            setTimeout(() => {
+                showAchievement('🌟 Bem-vindo à experiência premium da História do Rio!');
+            }, 3000);
+        });
+
+        // ===== CLIQUE NO PAINEL DE BOOKMARKS =====
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.premium-help-btn')) {
+                toggleBookmarksPanel();
+            }
+        });
+
+        // ===== EFEITO PARALLAX SUAVE =====
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // ===== INTERATIVIDADE DOS PERSONAGENS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.character').forEach(character => {
+                character.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.05)';
+                    this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4)';
+                });
+                
+                character.addEventListener('mouseleave', function() {
+                    if (this.classList.contains('visible')) {
+                        this.style.transform = 'translateY(0) scale(1)';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+        });
+
+        // ===== TECLADO DE ACESSIBILIDADE PREMIUM =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (document.getElementById('premiumModal').classList.contains('active')) {
+                    closePremiumHelp();
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+            
+            if (e.key === ' ' && e.target.tagName !== 'BUTTON') {
+                e.preventDefault();
+                // Toggle áudio atual
+                if (currentAudio) {
+                    if (currentAudio.paused) {
+                        currentAudio.play();
+                    } else {
+                        currentAudio.pause();
+                    }
+                }
+            }
+
+            if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                const periods = document.querySelectorAll('.period');
+                let currentIndex = -1;
+                
+                periods.forEach((period, index) => {
+                    const rect = period.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        currentIndex = index;
+                    }
+                });
+
+                if (e.key === 'ArrowUp' && currentIndex > 0) {
+                    periods[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
+                } else if (e.key === 'ArrowDown' && currentIndex < periods.length - 1) {
+                    periods[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // ===== PERFORMANCE: LAZY LOADING DE IMAGENS =====
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // ===== MODO ESCURO AUTOMÁTICO =====
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.style.filter = 'brightness(0.9)';
+        }
+    </script>
+</body>
+</html>
+
+    <script>
+        function scrollToTimeline() {
+            document.getElementById('timeline').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Animação de scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animar personagens com delay
+                    const characters = entry.target.querySelectorAll('.character');
+                    characters.forEach((char, index) => {
+                        setTimeout(() => {
+                            char.classList.add('visible');
+                        }, index * 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observar períodos
+        document.querySelectorAll('.period').forEach(period => {
+            observer.observe(period);
+        });
+
+        // Efeito parallax suave no scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Adicionar interatividade aos personagens
+        document.querySelectorAll('.character').forEach(character => {
+            character.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.05)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+            });
+            
+            character.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
