@@ -36,9 +36,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- ===== ESTILOS PERSONALIZADOS ===== -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/galeria-auto-scroll.css">
-    <link rel="stylesheet" href="../css/popup-styles.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/galeria-auto-scroll.css">
+    <link rel="stylesheet" href="css/popup-styles.css">
 </head>
 
 <body>
@@ -124,7 +124,7 @@
                         <i class="fas fa-city"></i>
                         História do Rio de Janeiro
                     </button>
-                    <button class="btn btn-sala-aula" onclick="window.location.href='saladeaula.html'">
+                    <button class="btn btn-sala-aula" onclick="window.location.href='html/saladeaula.html'">
                         <i class="fas fa-chalkboard-teacher"></i>
                         SALA DE AULA
                     </button>
@@ -164,7 +164,7 @@
                             <i class="fas fa-city"></i>
                             História do Rio de Janeiro
                         </button>
-                        <button class="mobile-menu-item mobile-btn-sala-aula" onclick="window.location.href='saladeaula.html'; closeMobileMenu()">
+                        <button class="mobile-menu-item mobile-btn-sala-aula" onclick="window.location.href='html/saladeaula.html'; closeMobileMenu()">
                             <i class="fas fa-chalkboard-teacher"></i>
                             SALA DE AULA
                         </button>
@@ -200,13 +200,17 @@
 
             <!-- === SEÇÃO DE CARTEIRINHA === -->
             <div class="section btn-row" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button class="btn btn-sm" onclick="window.location.href='cart.html'">
+                <button class="btn btn-sm" onclick="window.location.href='html/cart.html'">
                     <i class="fas fa-id-card"></i>
                     Gerar Carteirinha
                 </button>
-                <button class="btn btn-historia btn-sm" onclick="window.open('real.html', '_blank')">
+                <button class="btn btn-historia btn-sm" onclick="window.open('html/real.html', '_blank')">
                     <i class="fas fa-scroll"></i>
                     História Completa
+                </button>
+                <button class="btn btn-sm" onclick="window.location.href='html/eventos.html'" title="Acessar sistema de gerenciamento de eventos">
+                    <i class="fas fa-calendar-check"></i>
+                    Gerenciar Eventos
                 </button>
             </div>
 
@@ -290,93 +294,213 @@
             <!-- Div onde o mapa será renderizado pelo JavaScript -->
             <div id="map" role="region" aria-label="Mapa interativo do Centro do Rio" tabindex="0"></div>
             
-            <!-- Acessibilidade: botão flutuante e painel -->
-            <div class="a11y-launcher" aria-hidden="false">
-                <button id="a11yBtn" class="a11y-btn" aria-label="Abrir menu de acessibilidade" aria-controls="a11yPanel" aria-expanded="false" title="Acessibilidade (Alt + A)">
-                    <i class="fa-solid fa-universal-access"></i>
-                    <span class="sr-only">Acessibilidade</span>
-                </button>
-                <div class="a11y-label-text"></div>
-                <dialog id="a11yPanel" class="a11y-panel" aria-labelledby="a11yTitle">
-                    <div class="a11y-header">
-                        <h4 id="a11yTitle"><i class="fa-solid fa-universal-access"></i> Acessibilidade</h4>
-                        <button class="a11y-close" id="a11yClose" aria-label="Fechar painel"><i class="fa-solid fa-xmark"></i></button>
+            <!-- ===== CENTRAL DE ACESSIBILIDADE PREMIUM ===== -->
+            <div class="accessibility-hub" id="accessibilityHub">
+                <!-- Botão Principal Premium -->
+                <button class="accessibility-trigger" 
+                        id="accessibilityTrigger" 
+                        aria-label="Abrir Central de Acessibilidade" 
+                        aria-expanded="false"
+                        aria-controls="accessibilityPanel"
+                        title="Central de Acessibilidade (Alt + A)">
+                    <div class="trigger-ring"></div>
+                    <div class="trigger-pulse"></div>
+                    <div class="trigger-icon">
+                        <i class="fa-solid fa-universal-access"></i>
                     </div>
-                    <div class="a11y-content">
-                        <div class="a11y-group">
-                            <span class="a11y-label" id="lblContrast"><i class="fa-solid fa-circle-half-stroke"></i> Alto contraste</span>
-                            <div class="switch">
-                                <input type="checkbox" id="a11yContrast" aria-labelledby="lblContrast">
-                                <label for="a11yContrast" class="slider"></label>
+                    <span class="trigger-label">Acessibilidade</span>
+                </button>
+
+                <!-- Painel Premium de Controles -->
+                <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityTitle">
+                    <!-- Header do Painel -->
+                    <div class="panel-header">
+                        <div class="panel-title" id="accessibilityTitle">
+                            <i class="fa-solid fa-universal-access"></i>
+                            <h3>Central de Acessibilidade</h3>
+                        </div>
+                        <button class="panel-close" id="panelClose" aria-label="Fechar painel">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo do Painel -->
+                    <div class="panel-content">
+                        <!-- SEÇÃO: Visual -->
+                        <div class="control-section">
+                            <h4 class="section-heading">
+                                <i class="fa-solid fa-eye"></i>
+                                Ajustes Visuais
+                            </h4>
+                            
+                            <!-- Alto Contraste -->
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <i class="fa-solid fa-circle-half-stroke"></i>
+                                    <span class="control-label">Alto Contraste</span>
+                                    <span class="control-desc">Aumenta o contraste das cores</span>
+                                </div>
+                                <label class="premium-toggle">
+                                    <input type="checkbox" id="highContrastToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <!-- Tamanho do Texto -->
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <i class="fa-solid fa-text-height"></i>
+                                    <span class="control-label">Tamanho do Texto</span>
+                                    <span class="control-desc">Ajuste o tamanho da fonte</span>
+                                </div>
+                                <div class="text-size-controls">
+                                    <button class="size-btn" id="decreaseFont" aria-label="Diminuir texto">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                    <span class="size-indicator" id="fontSizeIndicator">100%</span>
+                                    <button class="size-btn" id="increaseFont" aria-label="Aumentar texto">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <button class="size-btn reset" id="resetFont" aria-label="Resetar texto">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Modo Dislexia -->
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <i class="fa-solid fa-book-open-reader"></i>
+                                    <span class="control-label">Fonte para Dislexia</span>
+                                    <span class="control-desc">Fonte otimizada para leitura</span>
+                                </div>
+                                <label class="premium-toggle">
+                                    <input type="checkbox" id="dyslexiaToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <!-- Destacar Links -->
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <i class="fa-solid fa-highlighter"></i>
+                                    <span class="control-label">Destacar Links e Foco</span>
+                                    <span class="control-desc">Maior visibilidade de elementos interativos</span>
+                                </div>
+                                <label class="premium-toggle">
+                                    <input type="checkbox" id="highlightToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
                             </div>
                         </div>
-                        <div class="a11y-group">
-                            <span class="a11y-label" id="lblText"><i class="fa-solid fa-text-height"></i> Tamanho do texto</span>
-                            <div class="a11y-actions">
-                                <button class="chip" id="fontMinus" aria-label="Diminuir fonte">A-</button>
-                                <button class="chip" id="fontReset" aria-label="Redefinir fonte">100%</button>
-                                <button class="chip" id="fontPlus" aria-label="Aumentar fonte">A+</button>
+
+                        <!-- SEÇÃO: Movimento -->
+                        <div class="control-section">
+                            <h4 class="section-heading">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                Animações e Movimento
+                            </h4>
+                            
+                            <!-- Reduzir Animações -->
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <i class="fa-solid fa-gauge-simple"></i>
+                                    <span class="control-label">Reduzir Animações</span>
+                                    <span class="control-desc">Minimiza movimentos na tela</span>
+                                </div>
+                                <label class="premium-toggle">
+                                    <input type="checkbox" id="reduceMotionToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
                             </div>
                         </div>
-                        <div class="a11y-group emergency-reset">
-                            <button id="resetAllSettings" class="reset-all-btn" aria-label="Redefinir todas as configurações">
-                                <i class="fa-solid fa-rotate-left"></i> Redefinir tudo (emergência)
+
+                        <!-- SEÇÃO: Áudio -->
+                        <div class="control-section">
+                            <h4 class="section-heading">
+                                <i class="fa-solid fa-volume-high"></i>
+                                Controles de Áudio
+                            </h4>
+                            
+                            <!-- Silenciar Mídias -->
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <i class="fa-solid fa-volume-xmark"></i>
+                                    <span class="control-label">Silenciar Mídias</span>
+                                    <span class="control-desc">Desativa áudios automáticos</span>
+                                </div>
+                                <label class="premium-toggle">
+                                    <input type="checkbox" id="muteMediaToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <!-- Leitor de Tela -->
+                            <div class="control-item">
+                                <div class="control-info">
+                                    <i class="fa-solid fa-headphones"></i>
+                                    <span class="control-label">Leitor de Tela</span>
+                                    <span class="control-desc">Narração por voz dos elementos</span>
+                                </div>
+                                <label class="premium-toggle">
+                                    <input type="checkbox" id="screenReaderToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <!-- Opções do Leitor (aparecem quando ativado) -->
+                            <div class="reader-options" id="readerOptions" style="display: none;">
+                                <!-- Leitura Automática -->
+                                <div class="control-item sub-item">
+                                    <div class="control-info">
+                                        <i class="fa-solid fa-magic"></i>
+                                        <span class="control-label">Leitura Automática</span>
+                                        <span class="control-desc">Lê ao passar o mouse</span>
+                                    </div>
+                                    <label class="premium-toggle">
+                                        <input type="checkbox" id="autoReadToggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <!-- Velocidade da Fala -->
+                                <div class="control-item sub-item">
+                                    <div class="control-info">
+                                        <i class="fa-solid fa-gauge-high"></i>
+                                        <span class="control-label">Velocidade da Fala</span>
+                                    </div>
+                                    <div class="speed-control">
+                                        <input type="range" 
+                                               id="speechRateSlider" 
+                                               min="0.5" 
+                                               max="2" 
+                                               step="0.1" 
+                                               value="1"
+                                               aria-label="Velocidade da fala">
+                                        <span class="speed-value" id="speechRateValue">1.0x</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEÇÃO: Reset -->
+                        <div class="control-section reset-section">
+                            <button class="reset-all-btn" id="resetAllBtn">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                                <span>Restaurar Configurações Padrão</span>
                             </button>
                         </div>
-                        <div class="a11y-group">
-                            <span class="a11y-label" id="lblDyslexia"><i class="fa-solid fa-book-open"></i> Modo dislexia</span>
-                            <div class="switch">
-                                <input type="checkbox" id="a11yDyslexia" aria-labelledby="lblDyslexia">
-                                <label for="a11yDyslexia" class="slider"></label>
-                            </div>
+
+                        <!-- Dica de Atalho -->
+                        <div class="panel-hint">
+                            <i class="fa-solid fa-keyboard"></i>
+                            <span>Dica: Use <kbd>Alt</kbd> + <kbd>A</kbd> para abrir/fechar rapidamente</span>
                         </div>
-                        <div class="a11y-group">
-                            <span class="a11y-label" id="lblReduceMotion"><i class="fa-solid fa-wave-square"></i> Reduzir animações</span>
-                            <div class="switch">
-                                <input type="checkbox" id="a11yReduceMotion" aria-labelledby="lblReduceMotion">
-                                <label for="a11yReduceMotion" class="slider"></label>
-                            </div>
-                        </div>
-                        <div class="a11y-group">
-                            <span class="a11y-label" id="lblHighlight"><i class="fa-solid fa-highlighter"></i> Destacar links e foco</span>
-                            <div class="switch">
-                                <input type="checkbox" id="a11yHighlight" aria-labelledby="lblHighlight">
-                                <label for="a11yHighlight" class="slider"></label>
-                            </div>
-                        </div>
-                        <div class="a11y-group">
-                            <span class="a11y-label" id="lblMuteMedia"><i class="fa-solid fa-volume-xmark"></i> Silenciar mídias</span>
-                            <div class="switch">
-                                <input type="checkbox" id="a11yMuteMedia" aria-labelledby="lblMuteMedia">
-                                <label for="a11yMuteMedia" class="slider"></label>
-                            </div>
-                        </div>
-                        <div class="a11y-group">
-                            <span class="a11y-label" id="lblScreenReader"><i class="fa-solid fa-volume-high"></i> Leitor de tela</span>
-                            <div class="switch">
-                                <input type="checkbox" id="a11yScreenReader" aria-labelledby="lblScreenReader">
-                                <label for="a11yScreenReader" class="slider"></label>
-                            </div>
-                        </div>
-                        <div id="screenReaderOptions" style="display: none;">
-                            <div class="a11y-group screen-reader-option">
-                                <span class="a11y-label" id="lblAutoRead"><i class="fa-solid fa-eye"></i> Leitura automática</span>
-                                <div class="switch">
-                                    <input type="checkbox" id="a11yAutoRead" aria-labelledby="lblAutoRead">
-                                    <label for="a11yAutoRead" class="slider"></label>
-                                </div>
-                            </div>
-                            <div class="a11y-group reader-controls">
-                                <span class="a11y-label"><i class="fa-solid fa-sliders"></i> Velocidade da fala</span>
-                                <div class="a11y-actions">
-                                    <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1" class="speech-rate-slider">
-                                    <span id="speechRateValue">1.0x</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="a11y-hint">Dica: use Alt + A para abrir/fechar este painel rapidamente.</p>
                     </div>
-                </dialog>
+                </div>
+
+                <!-- Overlay/Backdrop -->
+                <div class="accessibility-backdrop" id="accessibilityBackdrop"></div>
             </div>
             
             <!-- === RODAPÉ MOBILE DESTACADO === -->
@@ -400,7 +524,7 @@
                             © 2024 Carlos Antonio de Oliveira Piquet - CNPJ: 27.658.099/0001-70. Todos os direitos reservados.
                         </div>
                         <div class="legal-links">
-                            <a href="legal.html" title="Informações Legais Completas">⚖️ Informações Legais</a>
+                            <a href="html/legal.html" title="Informações Legais Completas">⚖️ Informações Legais</a>
                         </div>
                         
                     </div>
@@ -415,6 +539,6 @@
     
     <!-- ===== SCRIPT PERSONALIZADO ===== -->
     <!-- Contém toda a lógica da aplicação -->
-    <script src="../js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
