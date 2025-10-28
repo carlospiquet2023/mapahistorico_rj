@@ -57,6 +57,46 @@
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     
+    <!-- SCRIPT DE PROTEÇÃO - Verificar autenticação ANTES de carregar a página -->
+    <script>
+        (function() {
+            'use strict';
+            const SESSION_KEY = 'sistema_eventos_authenticated';
+            const SESSION_EXPIRY_KEY = 'sistema_eventos_session_expiry';
+            
+            function checkAuthentication() {
+                const isAuthenticated = localStorage.getItem(SESSION_KEY);
+                const expiryTime = localStorage.getItem(SESSION_EXPIRY_KEY);
+                
+                if (isAuthenticated !== 'true' || !expiryTime) {
+                    // Não autenticado
+                    window.location.href = 'login.html';
+                    return false;
+                }
+                
+                const now = Date.now();
+                if (now >= parseInt(expiryTime)) {
+                    // Sessão expirada
+                    localStorage.removeItem(SESSION_KEY);
+                    localStorage.removeItem(SESSION_EXPIRY_KEY);
+                    alert('Sua sessão expirou. Faça login novamente.');
+                    window.location.href = 'login.html';
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            // Verificar imediatamente
+            if (!checkAuthentication()) {
+                // Parar carregamento da página
+                document.addEventListener('DOMContentLoaded', function(e) {
+                    e.stopImmediatePropagation();
+                }, true);
+            }
+        })();
+    </script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -452,7 +492,7 @@
                             Gestão inteligente de presença e eventos acadêmicos
                         </p>
                     </div>
-                    <div class="flex gap-4">
+                    <div class="flex flex-wrap gap-4">
                         <button id="btn-dark-mode" class="btn glass-dark text-white px-6 py-3 rounded-xl hover:scale-105 transition-transform">
                             <i class="fas fa-moon mr-2"></i>
                             <span>Modo Escuro</span>
@@ -460,6 +500,10 @@
                         <button id="btn-help" class="btn bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:scale-105 transition-transform">
                             <i class="fas fa-question-circle mr-2"></i>
                             <span>Ajuda</span>
+                        </button>
+                        <button id="btn-logout" class="btn bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-xl hover:scale-105 transition-transform">
+                            <i class="fas fa-sign-out-alt mr-2"></i>
+                            <span>Sair</span>
                         </button>
                     </div>
                 </div>
@@ -831,6 +875,27 @@
         // ========================================
 
         'use strict';
+
+        // --- SISTEMA DE AUTENTICAÇÃO ---
+        const SESSION_KEY = 'sistema_eventos_authenticated';
+        const SESSION_EXPIRY_KEY = 'sistema_eventos_session_expiry';
+
+        // Função de Logout
+        function logout() {
+            if (confirm('Tem certeza que deseja sair do sistema?')) {
+                localStorage.removeItem(SESSION_KEY);
+                localStorage.removeItem(SESSION_EXPIRY_KEY);
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Adicionar event listener ao botão de logout
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnLogout = document.getElementById('btn-logout');
+            if (btnLogout) {
+                btnLogout.addEventListener('click', logout);
+            }
+        });
 
         // --- CONFIGURAÇÕES GLOBAIS ---
         const CONFIG = {
